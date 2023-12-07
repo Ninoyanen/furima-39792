@@ -59,7 +59,6 @@ has_one :address
 | post_code      | string     | null: false                    |
 | prefecture_id  | integer    | null: false                    |
 | municipality   | string     | null: false                    |
-| street_code    | string     | null: false                    |
 | street_address | string     | null: false                    |
 | building       | string     |                                |
 | phone_num      | string     | null: false                    |
