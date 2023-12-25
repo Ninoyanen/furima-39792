@@ -9,10 +9,10 @@ class Item < ApplicationRecord
   validates :delivery_cost_id, presence: true
   validates :prefecture_id,    presence: true
   validates :post_day_id,      presence: true
-  validates :price,            presence: true, format: { with: /\A[0-9]+\z/ }, numericality: { in: 300..9_999_999 }
+  validates :price,            presence: true, numericality: { only_integer: true, in: 300..9_999_999 }
 
   belongs_to :user
-  has_one :order
+  # has_one :order
 
   # ActiveHashによるAssociation
   extend ActiveHash::Associations::ActiveRecordExtensions

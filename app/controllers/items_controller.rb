@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @items = Item.all.includes(:user)
+    # @items = Item.all.includes(:user)
   end
 
   def new

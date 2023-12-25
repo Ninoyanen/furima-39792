@@ -12,6 +12,11 @@ RSpec.describe Item, type: :model do
       end
     end
     context '商品を出品できないとき' do
+      it 'userが紐付いていなければ出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'User must exist'
+      end
       it 'image（商品の画像）は空にできない' do
         @item.image = nil
         @item.valid?
@@ -60,12 +65,22 @@ RSpec.describe Item, type: :model do
       it 'priceは数字以外では出品できない' do
         @item.price = 'aaああアア'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is not a number"
+        expect(@item.errors.full_messages).to include 'Price is not a number'
       end
-      it 'priceは300から9999999までの数字でなければ出品できない' do
+      it 'priceは整数以外では出品できない' do
+        @item.price = '500.5'
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price must be an integer'
+      end
+      it 'priceが300円未満では出品できない' do
         @item.price = '200'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price must be in 300..9999999"
+        expect(@item.errors.full_messages).to include 'Price must be in 300..9999999'
+      end
+      it 'priceが9999999円を超えると出品できない' do
+        @item.price = '10000000'
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price must be in 300..9999999'
       end
     end
   end
