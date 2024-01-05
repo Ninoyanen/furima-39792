@@ -12,9 +12,9 @@ class User < ApplicationRecord
     validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角で入力してください' }
     validates :last_name_kana, format: { with: /\A[ァ-ヶ一]+\z/, message: '全角カタカナで入力してください' }
     validates :first_name_kana, format: { with: /\A[ァ-ヶ一]+\z/, message: '全角カタカナで入力してください' }
+    validates :birth
   end
 
-  validates :birth, presence: true
-  # has_many :items
-  # has_many :orders
+  has_many :items
+  has_many :orders
 end
