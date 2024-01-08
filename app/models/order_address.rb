@@ -10,8 +10,8 @@ class OrderAddress
   validate :validate_phone_num
 
   def save
-    order = Order.create(user_id:, item_id:)
-    Address.create(postal_code:, prefecture:, municipality:, street_address:, building:, phone_num:, order_id: order.id)
+    order = Order.create(user_id: user_id, item_id: item_id)
+    Address.create(postal_code: postal_code, prefecture: prefecture, municipality: municipality, street_address: street_address, building: building, phone_num: phone_num, order_id: order.id)
   end
 
   private
