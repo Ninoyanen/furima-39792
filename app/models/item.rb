@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
-    validates :image, :name, :category_id, :condition_id, :delivery_cost_id, :prefecture_id, :post_day_id
+    validates :image, :name, :content, :category_id, :condition_id, :delivery_cost_id, :prefecture_id, :post_day_id
     validates :price, numericality: { only_integer: true, in: 300..9_999_999 }
   end
 
